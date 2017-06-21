@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tramita.Web", "Web\Tramita.Web.csproj", "{DAF11DB4-D9A7-4522-8863-FE71B3F8992B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{10A85701-9FEC-4A5C-97DA-5EAECD3B111A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tramita.Infrastructure", "Tramita.Infrastructure\Tramita.Infrastructure.csproj", "{E720BD18-F64D-470E-B36E-72DB5D79BADE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tramita.Domain", "Tramita.Domain\Tramita.Domain.csproj", "{97B2BAE0-B550-42E4-8300-14132D4C0F62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tramita.Integration", "Tramita.Integration\Tramita.Integration.csproj", "{1BD2B9CF-CCDE-499D-937E-F7988626B825}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tramita.API", "Tramita.API\Tramita.API.csproj", "{8FD53AC5-103F-438C-97C5-BF6166EFD467}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAF11DB4-D9A7-4522-8863-FE71B3F8992B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAF11DB4-D9A7-4522-8863-FE71B3F8992B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAF11DB4-D9A7-4522-8863-FE71B3F8992B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAF11DB4-D9A7-4522-8863-FE71B3F8992B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E720BD18-F64D-470E-B36E-72DB5D79BADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E720BD18-F64D-470E-B36E-72DB5D79BADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E720BD18-F64D-470E-B36E-72DB5D79BADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E720BD18-F64D-470E-B36E-72DB5D79BADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97B2BAE0-B550-42E4-8300-14132D4C0F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B2BAE0-B550-42E4-8300-14132D4C0F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B2BAE0-B550-42E4-8300-14132D4C0F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B2BAE0-B550-42E4-8300-14132D4C0F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BD2B9CF-CCDE-499D-937E-F7988626B825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD2B9CF-CCDE-499D-937E-F7988626B825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD2B9CF-CCDE-499D-937E-F7988626B825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD2B9CF-CCDE-499D-937E-F7988626B825}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FD53AC5-103F-438C-97C5-BF6166EFD467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FD53AC5-103F-438C-97C5-BF6166EFD467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FD53AC5-103F-438C-97C5-BF6166EFD467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FD53AC5-103F-438C-97C5-BF6166EFD467}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DAF11DB4-D9A7-4522-8863-FE71B3F8992B} = {10A85701-9FEC-4A5C-97DA-5EAECD3B111A}
+		{E720BD18-F64D-470E-B36E-72DB5D79BADE} = {10A85701-9FEC-4A5C-97DA-5EAECD3B111A}
+		{97B2BAE0-B550-42E4-8300-14132D4C0F62} = {10A85701-9FEC-4A5C-97DA-5EAECD3B111A}
+		{1BD2B9CF-CCDE-499D-937E-F7988626B825} = {10A85701-9FEC-4A5C-97DA-5EAECD3B111A}
+		{8FD53AC5-103F-438C-97C5-BF6166EFD467} = {10A85701-9FEC-4A5C-97DA-5EAECD3B111A}
+	EndGlobalSection
+EndGlobal

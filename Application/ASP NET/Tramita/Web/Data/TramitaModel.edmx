@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TramitaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Directorship">
+          <Key>
+            <PropertyRef Name="DirectorshipID" />
+          </Key>
+          <Property Name="DirectorshipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nick" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="DirectorshipStatus" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Head">
+          <Key>
+            <PropertyRef Name="HeadID" />
+          </Key>
+          <Property Name="HeadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DirectorshipID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nick" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="HeadStatus" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DirectorshipID" Type="int" />
+          <Property Name="HeadID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nick" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SectionStatus" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="IdentityCard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CPF" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="RE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RG" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="PasswordHash" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DirectorshipID" Type="int" />
+          <Property Name="HeadID" Type="int" />
+          <Property Name="SectionID" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="UserToken" Type="varchar" MaxLength="255" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Tramita.Person.UserProfile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="IdentityCardID" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="About" Type="varchar" MaxLength="255" />
+          <Property Name="Midia" Type="varchar" MaxLength="255" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Head__Directorsh__1273C1CD">
+          <End Role="Directorship" Type="Self.Directorship" Multiplicity="0..1" />
+          <End Role="Head" Type="Self.Head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directorship">
+              <PropertyRef Name="DirectorshipID" />
+            </Principal>
+            <Dependent Role="Head">
+              <PropertyRef Name="DirectorshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IdentityC__Direc__1920BF5C">
+          <End Role="Directorship" Type="Self.Directorship" Multiplicity="0..1" />
+          <End Role="IdentityCard" Type="Self.IdentityCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directorship">
+              <PropertyRef Name="DirectorshipID" />
+            </Principal>
+            <Dependent Role="IdentityCard">
+              <PropertyRef Name="DirectorshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IdentityC__HeadI__1A14E395">
+          <End Role="Head" Type="Self.Head" Multiplicity="0..1" />
+          <End Role="IdentityCard" Type="Self.IdentityCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Head">
+              <PropertyRef Name="HeadID" />
+            </Principal>
+            <Dependent Role="IdentityCard">
+              <PropertyRef Name="HeadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Section__Directo__15502E78">
+          <End Role="Directorship" Type="Self.Directorship" Multiplicity="0..1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directorship">
+              <PropertyRef Name="DirectorshipID" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="DirectorshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Section__HeadID__164452B1">
+          <End Role="Head" Type="Self.Head" Multiplicity="0..1" />
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Head">
+              <PropertyRef Name="HeadID" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="HeadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__Ident__1DE57479">
+          <End Role="IdentityCard" Type="Self.IdentityCard" Multiplicity="0..1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityCard">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdentityCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TramitaModelStoreContainer">
+          <EntitySet Name="Directorship" EntityType="Self.Directorship" Schema="Management" store:Type="Tables" />
+          <EntitySet Name="Head" EntityType="Self.Head" Schema="Management" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="Management" store:Type="Tables" />
+          <EntitySet Name="IdentityCard" EntityType="Self.IdentityCard" Schema="Person" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" store:Type="Tables" store:Schema="Person">
+            <DefiningQuery>SELECT 
+    [UserProfile].[IdentityCardID] AS [IdentityCardID], 
+    [UserProfile].[FirstName] AS [FirstName], 
+    [UserProfile].[LastName] AS [LastName], 
+    [UserProfile].[Email] AS [Email], 
+    [UserProfile].[Phone] AS [Phone], 
+    [UserProfile].[BirthDate] AS [BirthDate], 
+    [UserProfile].[About] AS [About], 
+    [UserProfile].[Midia] AS [Midia], 
+    [UserProfile].[ModifiedDate] AS [ModifiedDate]
+    FROM [Person].[UserProfile] AS [UserProfile]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Head__Directorsh__1273C1CD" Association="Self.FK__Head__Directorsh__1273C1CD">
+            <End Role="Directorship" EntitySet="Directorship" />
+            <End Role="Head" EntitySet="Head" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IdentityC__Direc__1920BF5C" Association="Self.FK__IdentityC__Direc__1920BF5C">
+            <End Role="Directorship" EntitySet="Directorship" />
+            <End Role="IdentityCard" EntitySet="IdentityCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IdentityC__HeadI__1A14E395" Association="Self.FK__IdentityC__HeadI__1A14E395">
+            <End Role="Head" EntitySet="Head" />
+            <End Role="IdentityCard" EntitySet="IdentityCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Section__Directo__15502E78" Association="Self.FK__Section__Directo__15502E78">
+            <End Role="Directorship" EntitySet="Directorship" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Section__HeadID__164452B1" Association="Self.FK__Section__HeadID__164452B1">
+            <End Role="Head" EntitySet="Head" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__Ident__1DE57479" Association="Self.FK__UserProfi__Ident__1DE57479">
+            <End Role="IdentityCard" EntitySet="IdentityCard" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TramitaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TramitaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Directorship" EntityType="TramitaModel.Directorship" />
+          <EntitySet Name="Head" EntityType="TramitaModel.Head" />
+          <EntitySet Name="Section" EntityType="TramitaModel.Section" />
+          <EntitySet Name="IdentityCard" EntityType="TramitaModel.IdentityCard" />
+          <EntitySet Name="UserProfile" EntityType="TramitaModel.UserProfile" />
+          <AssociationSet Name="FK__Head__Directorsh__1273C1CD" Association="TramitaModel.FK__Head__Directorsh__1273C1CD">
+            <End Role="Directorship" EntitySet="Directorship" />
+            <End Role="Head" EntitySet="Head" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IdentityC__Direc__1920BF5C" Association="TramitaModel.FK__IdentityC__Direc__1920BF5C">
+            <End Role="Directorship" EntitySet="Directorship" />
+            <End Role="IdentityCard" EntitySet="IdentityCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Section__Directo__15502E78" Association="TramitaModel.FK__Section__Directo__15502E78">
+            <End Role="Directorship" EntitySet="Directorship" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IdentityC__HeadI__1A14E395" Association="TramitaModel.FK__IdentityC__HeadI__1A14E395">
+            <End Role="Head" EntitySet="Head" />
+            <End Role="IdentityCard" EntitySet="IdentityCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Section__HeadID__164452B1" Association="TramitaModel.FK__Section__HeadID__164452B1">
+            <End Role="Head" EntitySet="Head" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserProfi__Ident__1DE57479" Association="TramitaModel.FK__UserProfi__Ident__1DE57479">
+            <End Role="IdentityCard" EntitySet="IdentityCard" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Directorship">
+          <Key>
+            <PropertyRef Name="DirectorshipID" />
+          </Key>
+          <Property Name="DirectorshipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nick" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="DirectorshipStatus" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Head" Relationship="TramitaModel.FK__Head__Directorsh__1273C1CD" FromRole="Directorship" ToRole="Head" />
+          <NavigationProperty Name="IdentityCard" Relationship="TramitaModel.FK__IdentityC__Direc__1920BF5C" FromRole="Directorship" ToRole="IdentityCard" />
+          <NavigationProperty Name="Section" Relationship="TramitaModel.FK__Section__Directo__15502E78" FromRole="Directorship" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="Head">
+          <Key>
+            <PropertyRef Name="HeadID" />
+          </Key>
+          <Property Name="HeadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DirectorshipID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nick" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="HeadStatus" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Directorship" Relationship="TramitaModel.FK__Head__Directorsh__1273C1CD" FromRole="Head" ToRole="Directorship" />
+          <NavigationProperty Name="IdentityCard" Relationship="TramitaModel.FK__IdentityC__HeadI__1A14E395" FromRole="Head" ToRole="IdentityCard" />
+          <NavigationProperty Name="Section" Relationship="TramitaModel.FK__Section__HeadID__164452B1" FromRole="Head" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DirectorshipID" Type="Int32" />
+          <Property Name="HeadID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nick" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SectionStatus" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Directorship" Relationship="TramitaModel.FK__Section__Directo__15502E78" FromRole="Section" ToRole="Directorship" />
+          <NavigationProperty Name="Head" Relationship="TramitaModel.FK__Section__HeadID__164452B1" FromRole="Section" ToRole="Head" />
+        </EntityType>
+        <EntityType Name="IdentityCard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="RE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RG" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DirectorshipID" Type="Int32" />
+          <Property Name="HeadID" Type="Int32" />
+          <Property Name="SectionID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Directorship" Relationship="TramitaModel.FK__IdentityC__Direc__1920BF5C" FromRole="IdentityCard" ToRole="Directorship" />
+          <NavigationProperty Name="Head" Relationship="TramitaModel.FK__IdentityC__HeadI__1A14E395" FromRole="IdentityCard" ToRole="Head" />
+          <NavigationProperty Name="UserProfile" Relationship="TramitaModel.FK__UserProfi__Ident__1DE57479" FromRole="IdentityCard" ToRole="UserProfile" />
+          <Property Name="UserToken" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="IdentityCardID" Type="Int32" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="About" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Midia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="IdentityCard" Relationship="TramitaModel.FK__UserProfi__Ident__1DE57479" FromRole="UserProfile" ToRole="IdentityCard" />
+        </EntityType>
+        <Association Name="FK__Head__Directorsh__1273C1CD">
+          <End Type="TramitaModel.Directorship" Role="Directorship" Multiplicity="0..1" />
+          <End Type="TramitaModel.Head" Role="Head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directorship">
+              <PropertyRef Name="DirectorshipID" />
+            </Principal>
+            <Dependent Role="Head">
+              <PropertyRef Name="DirectorshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IdentityC__Direc__1920BF5C">
+          <End Type="TramitaModel.Directorship" Role="Directorship" Multiplicity="0..1" />
+          <End Type="TramitaModel.IdentityCard" Role="IdentityCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directorship">
+              <PropertyRef Name="DirectorshipID" />
+            </Principal>
+            <Dependent Role="IdentityCard">
+              <PropertyRef Name="DirectorshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Section__Directo__15502E78">
+          <End Type="TramitaModel.Directorship" Role="Directorship" Multiplicity="0..1" />
+          <End Type="TramitaModel.Section" Role="Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Directorship">
+              <PropertyRef Name="DirectorshipID" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="DirectorshipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IdentityC__HeadI__1A14E395">
+          <End Type="TramitaModel.Head" Role="Head" Multiplicity="0..1" />
+          <End Type="TramitaModel.IdentityCard" Role="IdentityCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Head">
+              <PropertyRef Name="HeadID" />
+            </Principal>
+            <Dependent Role="IdentityCard">
+              <PropertyRef Name="HeadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Section__HeadID__164452B1">
+          <End Type="TramitaModel.Head" Role="Head" Multiplicity="0..1" />
+          <End Type="TramitaModel.Section" Role="Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Head">
+              <PropertyRef Name="HeadID" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="HeadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserProfi__Ident__1DE57479">
+          <End Type="TramitaModel.IdentityCard" Role="IdentityCard" Multiplicity="0..1" />
+          <End Type="TramitaModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityCard">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdentityCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TramitaModelStoreContainer" CdmEntityContainer="TramitaEntities">
+          <EntitySetMapping Name="Directorship">
+            <EntityTypeMapping TypeName="TramitaModel.Directorship">
+              <MappingFragment StoreEntitySet="Directorship">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DirectorshipStatus" ColumnName="DirectorshipStatus" />
+                <ScalarProperty Name="Nick" ColumnName="Nick" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DirectorshipID" ColumnName="DirectorshipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Head">
+            <EntityTypeMapping TypeName="TramitaModel.Head">
+              <MappingFragment StoreEntitySet="Head">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="HeadStatus" ColumnName="HeadStatus" />
+                <ScalarProperty Name="Nick" ColumnName="Nick" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DirectorshipID" ColumnName="DirectorshipID" />
+                <ScalarProperty Name="HeadID" ColumnName="HeadID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Section">
+            <EntityTypeMapping TypeName="TramitaModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SectionStatus" ColumnName="SectionStatus" />
+                <ScalarProperty Name="Nick" ColumnName="Nick" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HeadID" ColumnName="HeadID" />
+                <ScalarProperty Name="DirectorshipID" ColumnName="DirectorshipID" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityCard">
+            <EntityTypeMapping TypeName="TramitaModel.IdentityCard">
+              <MappingFragment StoreEntitySet="IdentityCard">
+                <ScalarProperty Name="UserToken" ColumnName="UserToken" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="HeadID" ColumnName="HeadID" />
+                <ScalarProperty Name="DirectorshipID" ColumnName="DirectorshipID" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="RG" ColumnName="RG" />
+                <ScalarProperty Name="RE" ColumnName="RE" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfile">
+            <EntityTypeMapping TypeName="TramitaModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Midia" ColumnName="Midia" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IdentityCardID" ColumnName="IdentityCardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

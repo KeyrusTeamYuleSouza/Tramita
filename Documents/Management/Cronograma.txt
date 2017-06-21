@@ -1,0 +1,28 @@
+-- ==============================================================
+-- Arquitetura Banco de Dados
+-- ==============================================================
+1° Elaboração Projeto Lógico -
+2° Elaboração Projeto Físico -
+3° Construção Base Usuários (Projetar Carregamento Usuários) -
+4° Construção Base Clientes (Projetar Carregamento Usuários) -
+
+-- ==============================================================
+-- Configuração Ambiente
+-- ==============================================================
+1° Criação Nova Aplicação WEB -
+2° Configuração Internet Information Services (IIS) - 
+
+- ==============================================================
+-- Login 
+-- ==============================================================
+1° Autenticação Sistema -
+2° Recuperação Senha - 
+3° Liberação Acesso Usuário Gerente Negócio - 
+
+-- ==============================================================
+-- Administrativo
+-- ==============================================================
+1° Cadastro Usuário (Guardião, Marketing, Cordenador) -
+2° Distribuição Atendimento (Guardião x Gerente) -
+3° Edição Cadastro Usuários Ex: Ativação, Inativação
+

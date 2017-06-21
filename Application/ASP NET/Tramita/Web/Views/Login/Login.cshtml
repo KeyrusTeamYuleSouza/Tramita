@@ -1,0 +1,218 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Begin Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>Tramita | Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description" />
+    <meta content="" name="Yule Souza" />
+
+    <!-- Begin Global Mandatory Styles -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/theme/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme/metronic/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme/metronic/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <!-- End Global Mandatory Styles -->
+    <!-- Begin Page Level Styles -->
+    <link href="~/Content/theme/metronic/assets/global/plugins/select2/select2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme/metronic/assets/admin/pages/css/login3.css" rel="stylesheet" type="text/css" />
+    <!-- End Page Level Scripts -->
+    <!-- Begin Theme Styles -->
+    <link href="~/Content/theme/metronic/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme/metronic/assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme/metronic/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme/metronic/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/Content/theme/metronic/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
+    <!-- End Theme Styles -->
+
+</head>
+<!-- End Head -->
+
+<!-- Begin Body -->
+<body class="login">
+
+    <!-- Begin Logo -->
+    <div class="logo">
+        <a href="">
+
+        </a>
+    </div>
+    <!-- End Logo -->
+    <!-- Begin Sidebar Toggler Button -->
+    <div class="menu-toggler sidebar-toggler">
+
+    </div>
+    <!-- End Sidebar Toggler Button -->
+    <!-- Begin Login  -->
+    <div class="content">
+
+        <!-- Begin Login Form  -->
+        <form class="login-form" action="@Url.Action("AuthenticateUser", "Login")" method="post">
+            <h3 class="form-title">Login em sua conta</h3>
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert" id="btnLogin"></button>
+                <span>
+                    Acesse com seu usuário e senha.
+                </span>
+            </div>
+            <div class="form-group">
+                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                <label class="control-label visible-ie8 visible-ie9">Username</label>
+                <div class="input-icon">
+                    <i class="fa fa-user"></i>
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="CPF" maxlength="11" name="username" id="username" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <div class="input-icon">
+                    <i class="fa fa-lock"></i>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Senha" name="password" id="password" />
+                </div>
+            </div>
+            <div class="form-actions">
+                <label class="checkbox">
+                    <input type="checkbox" name="remember" value="1" id="remember" /> Lembrar-me
+                </label>
+                <button type="submit" class="btn green-haze pull-right">
+                    Login <i class="m-icon-swapright m-icon-white"></i>
+                </button>
+            </div>
+            <div class="forget-password">
+                <h4>Esqueceu sua senha?</h4>
+                <p>
+                    Sem problemas, clique <a href="javascript:;" id="forget-password">
+                        aqui
+                    </a>
+                    para resetar sua senha.
+                </p>
+            </div>
+            <div class="create-account">
+                <p>
+                    Não tem uma conta ainda?&nbsp; <a href="javascript:;" id="register-btn">
+                        Criar uma conta
+                    </a>
+                </p>
+            </div>
+        </form>
+        <!-- End Login Form -->
+
+        <!-- Begin Forgot Password Form -->
+        <form class="forget-form" method="post">
+            <h3>Esqueceu sua senha ?</h3>
+            <p>
+                Entre com seu endereço de e-mail abaixo para resetar sua senha.
+            </p>
+            <div class="form-group">
+                <div class="input-icon">
+                    <i class="fa fa-envelope"></i>
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" id="email" />
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" id="back-btn" class="btn">
+                    <i class="m-icon-swapleft"></i> Voltar
+                </button>
+                <button type="submit" class="btn green-haze pull-right">
+                    Enviar <i class="m-icon-swapright m-icon-white"></i>
+                </button>
+            </div>
+        </form>
+        <!-- End Forgot Password Form-->
+
+        <!-- Begin Registration Form -->
+        <form class="register-form" action="@Url.Action("RegisterUser", "Login")" method="post">
+            <h3>Inscrever-se</h3>
+            <p>
+                Acesso disponível somente para gerente negócio:
+            </p>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">CPF</label>
+                <div class="input-icon">
+                    <i class="fa fa-font"></i>
+                    <input class="form-control placeholder-no-fix" type="text" placeholder="CPF" min="7" maxlength="11" name="cpf" id="cpf" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Senha</label>
+                <div class="input-icon">
+                    <i class="fa fa-lock"></i>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Senha" name="registerpassword" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Informe sua senha novamente</label>
+                <div class="controls">
+                    <div class="input-icon">
+                        <i class="fa fa-check"></i>
+                        <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Informe sua senha novamente" name="rpassword" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="tnc" id="tnc" /> Eu concordo com os <a href="javascript:;">
+                        Termos de Serviço
+                    </a>
+                    e <a href="javascript:;">
+                        Política de Privacidade
+                    </a>
+                </label>
+                <div id="register_tnc_error">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button id="register-back-btn" type="button" class="btn">
+                    <i class="m-icon-swapleft"></i> Voltar
+                </button>
+                <button type="submit" id="register-submit-btn" class="btn green-haze pull-right">
+                    Registrar <i class="m-icon-swapright m-icon-white"></i>
+                </button>
+            </div>
+        </form>
+        <!-- End Registration Form -->
+
+    </div>
+    <!-- End Login -->
+    <!-- Begin Copyright -->
+    <div class="copyright">
+        2017 &copy; Tramita.
+    </div>
+
+    <!-- Core Plugins -->
+    <script src="~/Content/theme/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Content/theme/metronic/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="~/Content/theme/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Content/theme/metronic/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Content/theme/metronic/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="~/Content/theme/metronic/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+    <!-- End Core Plugins -->
+    <!-- Begin Page Level Plugins -->
+    <script src="~/Content/theme/metronic/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Content/theme/metronic/assets/global/plugins/select2/select2.min.js"></script>
+    <!-- End Page Level Plugins -->
+    <!-- Begin Page Level Scripts -->
+    <script src="~/Content/theme/metronic/assets/global/scripts/metronic.js" type="text/javascript"></script>
+    <script src="~/Content/theme/metronic/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+    <script src="~/Content/theme/metronic/assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+    <script src="~/Content/theme/metronic/assets/admin/pages/scripts/login.js" type="text/javascript"></script>
+    <!-- End Page Level Scripts -->
+
+    <script>
+        $(document).ready(function () {
+            Metronic.init();
+            Layout.init();
+            Login.init();
+        });
+    </script>
+</body>
+</html>
